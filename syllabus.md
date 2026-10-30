@@ -38,3 +38,11 @@
 | 16 | Small project (part 2) | Finish, polish, and ship it |
 
 > Python 3.9 is fine for everything through Lesson 12. Before Lesson 14 we'll install a newer version via Homebrew so packages behave nicely — I'll walk you through it then.
+
+## Lesson notes
+
+Each lesson folder has a `notes.md` with the concepts, your final code, quiz results, and my comments.
+
+- [Lesson 1 notes](lesson01/notes.md) — ✅ complete
+- [Lesson 2 notes](lesson02/notes.md) — ✅ complete
+- [Lesson 3 notes](lesson03/notes.md) — 🔄 in progress
