@@ -1,6 +1,6 @@
 # Lesson 3 — Decisions: if / elif / else
 
-**Date:** 2026-10-30 · **Status:** 🔄 In progress — quiz delivered, waiting for solutions
+**Date:** 2026-10-30 · **Status:** 🔄 In progress — Q1 ✅, Q2–Q4 pending
 
 ## Concepts learned
 
@@ -15,9 +15,9 @@
 
 ## Quiz tasks
 
-- [ ] **Q1 — `q1_grade.py`**: ask score, print letter grade
+- [x] **Q1 — `q1_grade.py`**: ask score, print letter grade ✅
   - `>= 90` → `Grade: A`, `>= 80` → `B`, `>= 70` → `C`, `>= 60` → `D`, else `F`
-  - Test: 95, 85, 70, 60, 42
+  - Test: 95, 85, 70, 60, 42 — **all correct**
 
 - [ ] **Q2 — `q2_age_check.py`**: name + age → sentence
   - under 13 → child, 13–17 → teenager, 18–64 → adult, 65+ → senior
@@ -40,6 +40,24 @@
   - Must end up printing `Adult` for 20 and `Minor` for 15
 
 ## Tutor comments
+
+### Q1 — `q1_grade.py` ✅
+
+```python
+number = int(input("Give me a score: "))
+if number  >= 90:
+    print("Grade: A")
+elif number >= 80:
+    print("Grade: B")
+elif number >= 70:
+    print("Grade: C")
+elif number >= 60:
+    print("Grade: D")
+else:
+    print("Grade: F")
+```
+
+**Tutor comment:** Correct on the first check — all five test values gave the right grade. The key thing done right: thresholds are ordered from high to low, so `elif`'s first-True-wins rule does the work and no `and` conditions are needed. Nits: `number` is vague — `score` would say more; there is a double space in `number  >= 90` (Python ignores it, but keep spacing consistent); trailing blank lines at the end of the file. Next time, paste the terminal output too — I ran all five cases here myself.
 
 - Run the file after every fix. Python reports only the **first** error; new ones appear as you fix them — that's normal debugging, not failure.
 - Expected error types here: `TypeError` (string vs number), `SyntaxError` (missing colon), `IndentationError` (body not indented).
