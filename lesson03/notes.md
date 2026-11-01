@@ -1,6 +1,6 @@
 # Lesson 3 — Decisions: if / elif / else
 
-**Date:** 2026-10-30 · **Status:** 🔄 In progress — Q1–Q3 ✅, Q4 pending
+**Date:** 2026-10-30 · **Status:** ✅ Complete
 
 ## Concepts learned
 
@@ -29,7 +29,7 @@
   - admin but wrong password → `Wrong password`
   - Test all three cases; think about condition order
 
-- [ ] **Q4 — `q4_bugfix.py`**: four bugs to find by running
+- [x] **Q4 — `q4_bugfix.py`**: four bugs to find by running ✅
   ```python
   age = input("Age? ")
   if age >= 18
@@ -92,7 +92,19 @@ elif username == 'admin' and password != 'python123':
     print("Wrong password")
 ```
 
-**Tutor comment:** Correct on the first try — I ran all three cases and got `Access granted`, `Unknown user`, `Wrong password`. Good call not converting the inputs: both values are compared as text, so `int()` would be wrong. The condition order is right too — most specific case first, then the username check, then the password check, and first-True-wins does the rest. One real nit, same lesson as Q2: the last `elif` is **always True when it is reached** — to get there, the first branch already proved the password wrong and the second branch proved the username is `admin`, so `username == 'admin' and password != 'python123'` only restates what is known. That line should be `else:`. An `if/elif` chain with no `else` prints nothing at all if the conditions don't cover a case; `else` guarantees exactly one branch runs. Style nit: single quotes here vs double quotes everywhere else — both valid, pick one and stay consistent. And notice the sharper structure this puzzle allows: check `username != "admin"` first, then `password != "python123"`, then `else` — zero `and` needed.
+**Tutor comment:** Correct on the first try — I ran all three cases and got `Access granted`, `Unknown user`, `Wrong password`. Good call not converting the inputs: both values are compared as text, so `int()` would be wrong. The condition order is right too — most specific case first, then the username check, then the password check, and first-True-wins does the rest. One real nit, same lesson as Q2: the last `elif` is **always True when it is reached** — to get there, the first branch already proved the password wrong and the second branch proved the username is `admin`, so `username == 'admin' and password != 'python123'` only restates what is known. That line should be `else:`. An `if/elif` chain with no `else` prints nothing at all if the conditions don't cover a case; `else` guarantees exactly one branch runs. Style nit: single quotes here vs double quotes everywhere else — both valid, pick one and stay consistent. And notice the sharper structure this puzzle allows: check `username != "admin"` first, then `password != "python123"`, then `else` — zero `and` needed. **Fix applied:** the last branch is now a plain `else:`, and all three cases still pass.
+
+### Q4 — `q4_bugfix.py` ✅
+
+```python
+age = int(input("Age? "))
+if age >= 18:
+    print("Adult")
+else:
+    print("Minor")
+```
+
+**Tutor comment:** All four bugs found and fixed — I ran both cases: `Adult` for 20, `Minor` for 15. The four bugs were: (1) missing colon after `if age >= 18` → `SyntaxError`; (2) `print("Adult")` not indented, so it was not inside the `if` → `IndentationError`; (3) `print("Minor")` not indented under `else:` → `IndentationError`; (4) `age` was left as a string from `input()`, so `age >= 18` raised `TypeError` — fixed with `int()`. Notice the difference in timing: bugs 1–3 stop the file **before it runs at all** (Python must parse and indent-check the whole file first), while bug 4 only appears when execution reaches the comparison. That is exactly why running after every single fix works — each run reveals the next error. The colon and the 4-space indent are the first things to check whenever Python refuses to run a file.
 
 - Run the file after every fix. Python reports only the **first** error; new ones appear as you fix them — that's normal debugging, not failure.
 - Expected error types here: `TypeError` (string vs number), `SyntaxError` (missing colon), `IndentationError` (body not indented).
