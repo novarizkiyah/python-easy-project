@@ -1,6 +1,6 @@
 # Lesson 3 — Decisions: if / elif / else
 
-**Date:** 2026-10-30 · **Status:** 🔄 In progress — Q1–Q2 ✅, Q3–Q4 pending
+**Date:** 2026-10-30 · **Status:** 🔄 In progress — Q1–Q3 ✅, Q4 pending
 
 ## Concepts learned
 
@@ -23,7 +23,7 @@
   - under 13 → child, 13–17 → teenager, 18–64 → adult, 65+ → senior
   - Test boundaries: 12, 13, 17, 18, 64, 65 — **all correct**
 
-- [ ] **Q3 — `q3_login.py`**: username + password
+- [x] **Q3 — `q3_login.py`**: username + password ✅
   - both `admin` / `python123` → `Access granted`
   - username not `admin` → `Unknown user`
   - admin but wrong password → `Wrong password`
@@ -76,6 +76,23 @@ else:
 ```
 
 **Tutor comment:** All six boundary ages correct. Two real bugs fixed along the way: (1) `&` used instead of `and` — `&` is bitwise AND and binds tighter than `>=`, so `age >= 18 & age <= 64` became `age >= (18 & age) <= 64` and silently returned True for 12, 13, 17; (2) the personalized sentence was an f-string without `{ }` outside the branches, printing literal text. Final logic is right. Nit: with the descending chain, `and age <= 64` and `and age <= 17` are redundant — reaching that line already guarantees the upper bound. Trailing space on the teenager line.
+
+### Q3 — `q3_login.py` ✅
+
+```python
+username = input("Please input your username: ")
+password = input("Please input your password: ")
+
+
+if username == 'admin' and password == 'python123':
+    print("Access granted")
+elif username != 'admin':
+    print("Unknown user")
+elif username == 'admin' and password != 'python123':
+    print("Wrong password")
+```
+
+**Tutor comment:** Correct on the first try — I ran all three cases and got `Access granted`, `Unknown user`, `Wrong password`. Good call not converting the inputs: both values are compared as text, so `int()` would be wrong. The condition order is right too — most specific case first, then the username check, then the password check, and first-True-wins does the rest. One real nit, same lesson as Q2: the last `elif` is **always True when it is reached** — to get there, the first branch already proved the password wrong and the second branch proved the username is `admin`, so `username == 'admin' and password != 'python123'` only restates what is known. That line should be `else:`. An `if/elif` chain with no `else` prints nothing at all if the conditions don't cover a case; `else` guarantees exactly one branch runs. Style nit: single quotes here vs double quotes everywhere else — both valid, pick one and stay consistent. And notice the sharper structure this puzzle allows: check `username != "admin"` first, then `password != "python123"`, then `else` — zero `and` needed.
 
 - Run the file after every fix. Python reports only the **first** error; new ones appear as you fix them — that's normal debugging, not failure.
 - Expected error types here: `TypeError` (string vs number), `SyntaxError` (missing colon), `IndentationError` (body not indented).
