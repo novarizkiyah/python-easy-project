@@ -1,6 +1,6 @@
 # Lesson 4 — Loops: for and while
 
-**Date:** 2026-11-01 · **Status:** 🟨 In progress — Q1 ✅, Q2–Q4 pending
+**Date:** 2026-11-01 · **Status:** 🟨 In progress — Q1–Q2 ✅, Q3–Q4 pending
 
 ## Concepts to learn
 
@@ -52,7 +52,7 @@ print(total)              # 6 — printed once, after the loop
     Blastoff!
     ```
 
-- [ ] **Q2 — `q2_times_table.py`**: loop variable inside an f-string
+- [x] **Q2 — `q2_times_table.py`**: loop variable inside an f-string ✅
   - Ask `Number? `, then print 10 lines: `n x i = n*i` for `i` from 1 to 10
   - Use `for` and `range(1, 11)`; keep the exact format `7 x 1 = 7`
   - Test with 7 and 3 — first and last line for 7: `7 x 1 = 7` … `7 x 10 = 70`
@@ -87,6 +87,17 @@ print("Blastoff!")
 ```
 
 **Tutor comment:** Correct on the first try — I ran it and got exactly `5 4 3 2 1 Blastoff!`. The `range(5, 0, -1)` is right: start at 5, stop before 0, step -1 counts down. And `print("Blastoff!")` is unindented, so it runs once after the loop instead of being repeated inside it — that is the detail most people get wrong on this exercise. One style nit: `print (i)` has a space between the function name and the parenthesis. Python accepts it, but it is inconsistent with `print("Blastoff!")` two lines below; PEP 8 (Python's style guide) says no space. `print(i)` is the standard form.
+
+### Q2 — `q2_times_table.py` ✅
+
+```python
+n = int(input("Number? "))
+for i in range(1, 11, 1):
+    print(f"{n} x {i} = {n * i}")
+```
+
+**Tutor comment:** Correct on the first try — I ran it with 7 and 3 and both tables are right, first line `7 x 1 = 7` and last line `7 x 10 = 70`. The important structure is right: `input()` happens once before the loop (so the user is asked once, not ten times), `int()` converts the text to a number, and the f-string puts both variables plus the product (`{n * i}`) into the exact required format. One small simplification: `range(1, 11, 1)` writes the step out explicitly, but the default step is already 1, so `range(1, 11)` means the same thing — use the shorter form unless you actually need a step other than 1. Not a bug, just tidier.
+
 
 ## How to submit
 
