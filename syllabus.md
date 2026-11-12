@@ -46,3 +46,4 @@ Each lesson folder has a `notes.md` with the concepts, your final code, quiz res
 - [Lesson 1 notes](lesson01/notes.md) — ✅ complete
 - [Lesson 2 notes](lesson02/notes.md) — ✅ complete
 - [Lesson 3 notes](lesson03/notes.md) — ✅ complete
+- [Lesson 4 notes](lesson04/notes.md) — ⬜ not started
