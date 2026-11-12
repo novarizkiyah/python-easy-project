@@ -1,6 +1,6 @@
 # Lesson 4 — Loops: for and while
 
-**Date:** 2026-11-01 · **Status:** 🟨 In progress — Q1–Q3 ✅, Q4 pending
+**Date:** 2026-11-01 · **Status:** ✅ Complete — all four quizzes passed
 
 ## Concepts to learn
 
@@ -63,7 +63,7 @@ print(total)              # 6 — printed once, after the loop
   - Test: `10, 5, 2, 0` → `Total: 17`; entering `0` immediately → `Total: 0`; `5, -2, 0` → `Total: 3`
   - Think: what must happen before the loop, what goes inside, and what runs after?
 
-- [ ] **Q4 — `q4_bugfix.py`**: four bugs to find by running
+- [x] **Q4 — `q4_bugfix.py`**: four bugs to find by running ✅
   ```python
   count = 1
   total = 0
@@ -112,6 +112,21 @@ print(f"Total: {total}")
 ```
 
 **Tutor comment:** Correct — all three tests pass (`Total: 17`, `Total: 0`, `Total: 3`), including the two edge cases that matter: entering `0` straight away (the loop body never runs, total stays at 0) and a negative number (`5 + (-2) = 3`, added normally). The structure is the classic sentinel pattern: the first input sits before the loop so the condition has something to test, the next input is the last line of the body so every pass refreshes the value, and the print is unindented so it runs once. The same input line appearing twice is correct here — it is not duplication to remove. One style nit: `while number != 0 :` has a space before the colon; PEP 8 writes it `while number != 0:`. The earlier version hung for exactly the reason this one works: `number` never changed, so `number != 0` stayed True forever.
+
+### Q4 — `q4_bugfix.py` ✅
+
+```python
+count = 1
+total = 0
+
+while count <= 5:
+    total = total + count
+    count = count + 1
+
+print(total)
+```
+
+**Tutor comment:** All four bugs fixed — I ran it and got `15`. The four were: (1) missing colon after `while count < 5` → `SyntaxError`, so the file never ran at all; (2) `total = total + count` not indented → `IndentationError` (expected an indented block); (3) `count = count + 1` not indented, so it sat outside the loop — `count` never changed, the loop ran forever and printed nothing; (4) `count < 5` misses 5, so the sum stops at 1+2+3+4 = 10 — Python gives no warning for this one, only checking the result reveals it. Notice the three different timings: bugs 1–2 are caught before any code runs (Python parses and indent-checks the whole file first), bug 3 appears as a hang while running, and bug 4 appears only when you compare the output with the expected answer. Fixing one thing and re-running is what makes each bug visible in turn.
 
 ## How to submit
 
