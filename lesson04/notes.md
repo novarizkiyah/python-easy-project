@@ -1,6 +1,6 @@
 # Lesson 4 — Loops: for and while
 
-**Date:** 2026-11-01 · **Status:** 🟨 In progress — Q1–Q2 ✅, Q3–Q4 pending
+**Date:** 2026-11-01 · **Status:** 🟨 In progress — Q1–Q3 ✅, Q4 pending
 
 ## Concepts to learn
 
@@ -57,7 +57,7 @@ print(total)              # 6 — printed once, after the loop
   - Use `for` and `range(1, 11)`; keep the exact format `7 x 1 = 7`
   - Test with 7 and 3 — first and last line for 7: `7 x 1 = 7` … `7 x 10 = 70`
 
-- [ ] **Q3 — `q3_sum_until_zero.py`**: while loop with a sentinel
+- [x] **Q3 — `q3_sum_until_zero.py`**: while loop with a sentinel ✅
   - Keep asking `Number? ` and adding each number to a total; stop when the user enters `0`
   - `0` ends the loop and is **not** added; then print `Total: X` once
   - Test: `10, 5, 2, 0` → `Total: 17`; entering `0` immediately → `Total: 0`; `5, -2, 0` → `Total: 3`
@@ -98,6 +98,20 @@ for i in range(1, 11, 1):
 
 **Tutor comment:** Correct on the first try — I ran it with 7 and 3 and both tables are right, first line `7 x 1 = 7` and last line `7 x 10 = 70`. The important structure is right: `input()` happens once before the loop (so the user is asked once, not ten times), `int()` converts the text to a number, and the f-string puts both variables plus the product (`{n * i}`) into the exact required format. One small simplification: `range(1, 11, 1)` writes the step out explicitly, but the default step is already 1, so `range(1, 11)` means the same thing — use the shorter form unless you actually need a step other than 1. Not a bug, just tidier.
 
+### Q3 — `q3_sum_until_zero.py` ✅
+
+```python
+total = 0
+
+number = int(input("Number? "))
+
+while number != 0 :
+    total = total + number
+    number = int(input("Number? "))
+print(f"Total: {total}")
+```
+
+**Tutor comment:** Correct — all three tests pass (`Total: 17`, `Total: 0`, `Total: 3`), including the two edge cases that matter: entering `0` straight away (the loop body never runs, total stays at 0) and a negative number (`5 + (-2) = 3`, added normally). The structure is the classic sentinel pattern: the first input sits before the loop so the condition has something to test, the next input is the last line of the body so every pass refreshes the value, and the print is unindented so it runs once. The same input line appearing twice is correct here — it is not duplication to remove. One style nit: `while number != 0 :` has a space before the colon; PEP 8 writes it `while number != 0:`. The earlier version hung for exactly the reason this one works: `number` never changed, so `number != 0` stayed True forever.
 
 ## How to submit
 
